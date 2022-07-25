@@ -1,7 +1,17 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import { useEffect } from "react";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function DefaultLayout({ children }) {
+  return <>{children}</>;
 }
 
-export default MyApp
+function MyApp({ Component, pageProps }) {
+  const ChildrenLayout = Component.Layout || DefaultLayout;
+  return (
+    <ChildrenLayout>
+      <Component {...pageProps} />
+    </ChildrenLayout>
+  );
+}
+
+export default MyApp;
